@@ -16,7 +16,7 @@
 
 */
 
-
+// ******* DISPLAY BOOKS METHOD ********* // 
 
 // Click handler for search button
 const captureSearchValue = () => {
@@ -83,6 +83,55 @@ const searchBtn = document.getElementById("search-btn")
 
 // Attach an event listener to the search button
 searchBtn.addEventListener("click", () => { searchBtnClickHandler(books) });
+
+// ******* DISPLAY TAGS METHOD ********* // 
+
+// search the the tag objects of each instance of the book array 
+// check if value is already in the array
+// add to array 
+
+// FUNCTIONALITY NOT YET COMPLETED
+
+
+
+const tagBtnClickHandler = () => {
+  console.log("button press")
+  const tagArray = collectArrayOfTags(books)
+
+  let string = ""
+  for (let i = 0; i < tagArray.length; i++) {
+    string = string + `${tagArray[i]} /  `
+  }
+
+  const finalString = `<p>${string}</p>`
+
+  document.getElementById("tagList").innerHTML = finalString 
+}
+
+// CONCEPT IDEATED BUT NOT COMPLETED 
+
+const collectArrayOfTags = () => {
+  const tagArray = []
+  for (let i = 0; i < books.length; i++) {
+    let j = 0;
+    console.log("length: " + books[i].tags.length)
+    while(j < books[i].tags.length) {
+      tagArray.push(books[i].tags[j])
+       j = j+ 1
+    }
+    i = i + 1
+  }
+  const uniqueArray = [...new Set(tagArray)]
+  return uniqueArray
+}
+
+const tagBtn = document.getElementById("tag-btn")
+
+tagBtn.addEventListener("click", () => {tagBtnClickHandler()} )
+
+
+
+
 
 
 
