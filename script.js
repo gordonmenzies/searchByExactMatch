@@ -90,28 +90,18 @@ searchBtn.addEventListener("click", () => { searchBtnClickHandler(books) });
 // check if value is already in the array
 // add to array 
 
-// FUNCTIONALITY NOT YET COMPLETED
-
-
 
 const tagBtnClickHandler = () => {
-  console.log("button press")
   const tagArray = collectArrayOfTags(books)
 
-  let string = ""
-  for (let i = 0; i < tagArray.length; i++) {
-    string = string + `${tagArray[i]} /  `
-  }
-
-  const finalString = `<p>${string}</p>`
-
-  document.getElementById("tagList").innerHTML = finalString 
+  // prepare the string to post innerHTML
+  prepareHTMLString(tagArray)
 }
-
-// CONCEPT IDEATED BUT NOT COMPLETED 
 
 const collectArrayOfTags = () => {
   const tagArray = []
+
+  // collect every instance of a tag
   for (let i = 0; i < books.length; i++) {
     let j = 0;
     console.log("length: " + books[i].tags.length)
@@ -121,8 +111,23 @@ const collectArrayOfTags = () => {
     }
     i = i + 1
   }
+
+  // reduce the array to only unique examples
+
   const uniqueArray = [...new Set(tagArray)]
   return uniqueArray
+}
+
+// function to convert array into element of the DOM
+const prepareHTMLString = (tagArray) => {
+  let string = ""
+  for (let i = 0; i < tagArray.length; i++) {
+    string = string + `${tagArray[i]} /  `
+  }
+
+  const finalString = `<p>${string}</p>`
+
+  document.getElementById("tagList").innerHTML = finalString 
 }
 
 const tagBtn = document.getElementById("tag-btn")
